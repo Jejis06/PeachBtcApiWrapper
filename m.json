@@ -1,0 +1,4971 @@
+[
+ {
+  "id": "accrue",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "advcash",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "wallet"
+     ],
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "USD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "airtelMoney",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "alias",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ARS"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "aliPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ],
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "CNY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "apaym",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ],
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "bancolombia",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "COP",
+   "PEN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "bankera",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ],
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CHF",
+   "CZK",
+   "DKK",
+   "EUR",
+   "GBP",
+   "HUF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "bizum",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "blik",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PLN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "cbu",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ARS"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "cashDepositCanada",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "name"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "CAD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "chileBankTransfer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "RUT"
+     ],
+     [
+      "DNI"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "bankBranch"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "CLP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "chippercash",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "cvu",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ARS"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "daviPlata",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "COP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "dana",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "IDR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "djamo",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ],
+    [
+     [
+      "beneficiary"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "easypaisa",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "PKR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "eversend",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "fasterPayments",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "ukBankAccount"
+     ]
+    ],
+    [
+     [
+      "ukSortCode"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "friends24",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CZK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "furicomi",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "branchName"
+     ]
+    ],
+    [
+     [
+      "bankCode"
+     ]
+    ],
+    [
+     [
+      "branchCode"
+     ]
+    ],
+    [
+     [
+      "accountType"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "name"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "JPY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "gcash",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PHP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "giftCard.amazon",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "DE",
+   "FR",
+   "IT",
+   "ES",
+   "NL",
+   "UK",
+   "SE",
+   "PT"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.DE",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.FR",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.IT",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "IT"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.ES",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "ES"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.NL",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "NL"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.UK",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "UK"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.SE",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "SE"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.amazon.PT",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "SEK"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "giftCard.steam",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "steamFriendCode"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "goPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "IDR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "guatemalaBankDeposit",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "bankBranch"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "GTQ"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "imps",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ],
+    [
+     [
+      "mobileMoneyIdentifier"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "INR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "instantSepa",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban"
+     ]
+    ],
+    [
+     [
+      "bic"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "instaPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ],
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EGP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "interac",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ],
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "CAD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "iris",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "kcbBankKenya",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "KES"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "keksPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "klasha",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "liquid",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "receiveAddress"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "USDT"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "lnurl",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "lnurlAddress"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "SAT"
+  ],
+  "anonymous": true
+ },
+ {
+  "id": "lydia",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "m-pesa",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CDF",
+   "KES",
+   "TZS"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "mbWay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "mercadoPago",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ],
+    [
+     [
+      "email"
+     ]
+    ],
+    [
+     [
+      "name"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ARS",
+   "BOB",
+   "BRL",
+   "CLP",
+   "COP",
+   "CRC",
+   "DOP",
+   "GTQ",
+   "HNL",
+   "MXN",
+   "PAB",
+   "PEN",
+   "PYG",
+   "UYU",
+   "VES"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "mobilePay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "DKK",
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "moov",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "moroccoBankTransfer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "MAD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "mtn",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "mtnMobileMoney",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "n26",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ],
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nayaPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "PKR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferBG",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "BGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferBO",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "BOB"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferCH",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CHF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferCZ",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CZK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferDK",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "DKK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferEG",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EGP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferHU",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "HUF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferIS",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ISK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferNG",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferNZ",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "reference"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "NZD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferNO",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NOK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferPK",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PKR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferPL",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PLN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferRO",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "RON"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferSA",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "iban"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "SAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferSE",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "SEK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferSG",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "SGD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferTR",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban",
+      "bic"
+     ],
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "TRY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferUY",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "residentialAddress"
+     ]
+    ],
+    [
+     [
+      "cedulaID"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "accountType"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "UYU"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferVN",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "VND"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nationalTransferZA",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "accountType"
+     ]
+    ],
+    [
+     [
+      "branchCode"
+     ]
+    ],
+    [
+     [
+      "reference"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "nequi",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "COP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "neteller",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "BGN",
+   "CHF",
+   "DKK",
+   "EUR",
+   "GBP",
+   "HUF",
+   "NOK",
+   "PLN",
+   "RON",
+   "SEK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "orangeMoney",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CDF",
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "osko",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "bsbNumber"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "AUD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "ovo",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "IDR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "papara",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "TRY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "paraguayBankTransfer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name",
+      "accountNumber",
+      "bankName",
+      "cedulaID"
+     ],
+     [
+      "alias",
+      "aliasType"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PYG"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "payday",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "payeer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "payID",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ],
+     [
+      "email"
+     ],
+     [
+      "bankAccountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "name",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "AUD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "payLah",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "SGD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "paypal",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ],
+     [
+      "email"
+     ],
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "BGN",
+   "CHF",
+   "CZK",
+   "DKK",
+   "EUR",
+   "GBP",
+   "HUF",
+   "NOK",
+   "PLN",
+   "RON",
+   "RON",
+   "SEK",
+   "USD",
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "paysera",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "BGN",
+   "CHF",
+   "CZK",
+   "DKK",
+   "EUR",
+   "GBP",
+   "HUF",
+   "ISK",
+   "NOK",
+   "PLN",
+   "RON",
+   "SEK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "paytm",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "INR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "perfectMoney",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "name"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EUR",
+   "USD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "peruBankDeposit",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "DNI"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ],
+    [
+     [
+      "bankBranch"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "PEN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "philippineBankTransfer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "PHP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "pix",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "pixAlias"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "BRL"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "postePay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "postePayNumber"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "rappipay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "ARS",
+   "CLP",
+   "COP",
+   "CRC",
+   "MXN",
+   "PEN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "rebellion",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "revolut",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ],
+     [
+      "email"
+     ],
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "AED",
+   "AUD",
+   "BGN",
+   "CAD",
+   "CHF",
+   "CLP",
+   "COP",
+   "CZK",
+   "DKK",
+   "EGP",
+   "EUR",
+   "GBP",
+   "HUF",
+   "ILS",
+   "INR",
+   "ISK",
+   "JPY",
+   "KZT",
+   "MAD",
+   "MXN",
+   "NOK",
+   "NZD",
+   "PHP",
+   "PLN",
+   "RON",
+   "RSD",
+   "SAR",
+   "SEK",
+   "SGD",
+   "TRY",
+   "USD",
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "sadaPay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "phone"
+     ]
+    ],
+    [
+     [
+      "iban"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "PKR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "satispay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "sepa",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban"
+     ]
+    ],
+    [
+     [
+      "bic"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "sinpe",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "iban"
+     ]
+    ],
+    [
+     [
+      "bic"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CRC"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "sinpeMovil",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CRC"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "skrill",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "email"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "BGN",
+   "CHF",
+   "CZK",
+   "DKK",
+   "EUR",
+   "GBP",
+   "HUF",
+   "ISK",
+   "NOK",
+   "PLN",
+   "RON",
+   "SEK",
+   "USD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "spei",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "MXN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "stp",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "MXN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "straksbetaling",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NOK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "strike",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR",
+   "GBP",
+   "USD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "swish",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "SEK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoMoneyBolivia",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "BOB"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoMoneyElSalvador",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "USD"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoMoneyGuatemala",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "GTQ"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoMoneyHonduras",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "HNL"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoMoneyParaguay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "PYG"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "tigoPesa",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "TZS"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "twint",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "CHF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "uaeBankTransfer",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "name"
+     ]
+    ],
+    [
+     [
+      "accountNumber"
+     ]
+    ],
+    [
+     [
+      "bankName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "AED"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "UPI",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "nameTag"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "INR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "vipps",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "NOK"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "vodafoneCash",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "EGP"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "wave",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "weChat",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "CNY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "wero",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "beneficiary",
+    "reference"
+   ]
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "westernUnion",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "beneficiary"
+     ]
+    ],
+    [
+     [
+      "beneficiaryAddress"
+     ]
+    ]
+   ],
+   "optional": [
+    "phone",
+    "bankName",
+    "bankAccountNumber",
+    "routingDetails"
+   ]
+  },
+  "currencies": [
+   "AED",
+   "ARS",
+   "AUD",
+   "BGN",
+   "BRL",
+   "CAD",
+   "CHF",
+   "CLP",
+   "CNY",
+   "COP",
+   "CRC",
+   "CZK",
+   "DKK",
+   "EGP",
+   "EUR",
+   "GBP",
+   "HUF",
+   "IDR",
+   "ILS",
+   "INR",
+   "JPY",
+   "MAD",
+   "MXN",
+   "MYR",
+   "NOK",
+   "NZD",
+   "PHP",
+   "PKR",
+   "PLN",
+   "RON",
+   "SEK",
+   "SGD",
+   "TRY",
+   "UAH",
+   "USD",
+   "UYU",
+   "VND",
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "wirepay",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "wise",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "userName"
+     ],
+     [
+      "email"
+     ],
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": [
+    "reference"
+   ]
+  },
+  "currencies": [
+   "AED",
+   "ARS",
+   "AUD",
+   "BGN",
+   "BRL",
+   "CAD",
+   "CHF",
+   "CLP",
+   "CNY",
+   "COP",
+   "CRC",
+   "CZK",
+   "DKK",
+   "EGP",
+   "EUR",
+   "GBP",
+   "HUF",
+   "IDR",
+   "ILS",
+   "INR",
+   "JPY",
+   "KES",
+   "MAD",
+   "MXN",
+   "MYR",
+   "NOK",
+   "NZD",
+   "PHP",
+   "PKR",
+   "PLN",
+   "RON",
+   "SEK",
+   "SGD",
+   "TRY",
+   "UAH",
+   "USD",
+   "UYU",
+   "VND",
+   "ZAR"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "ziraat",
+  "fields": {
+   "mandatory": [
+    [
+     [
+      "phone"
+     ]
+    ]
+   ],
+   "optional": []
+  },
+  "currencies": [
+   "TRY"
+  ],
+  "anonymous": false
+ },
+ {
+  "id": "cash.fr.lyon.decouvre-btc-lyon",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.unterfranken.einundzwanzig-unterfranken",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.ostwestfalen-lippe.einundzwanzig-owl",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.bienne.blockchain-biel-bienne",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.koblenz.einundzwanzig-koblenz",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.leeds.leeds-btc-network",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.caen.normandie-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gr.athens.athens-btc-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "GR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.northampton.northants-bitcoin-walk",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.dijon.decouvre-btc-dijon",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cy.nicosia.nicosia-btc",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "CY"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.bg.burgas.burgas-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR",
+   "BGN"
+  ],
+  "countries": [
+   "BG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.nottingham.nottingham-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.saarland.einundzwanzig-saarland",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.kinshasa.kinshasa-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.mannheim.einundzwanzig-mannheim",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.me.podgorica.dvadesetjedan-montenegro",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "ME"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.be.antwerp.belgian-btc-embassy",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "BE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.it.venice.bacari-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "IT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.rs.belgrade.balkans-otc-p2p",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "RS"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.aix.aix-en-provence-btc",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.london.london-btc-space",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.hannover.einundzwanzig-hannover",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.saintetienne.bitcoin-42",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ba.sarajevo.balkans-otc-p2p",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "BA"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.annecy.annecy-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.nottingham.bitcoin-nottingham",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pt.lisbon.lisbon-btc-maxis",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.kent.kentbitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.osnabruck.einundzwanzig-osnabruck",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.bailleul.\u20bf-on-lille",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.lugano.lugano-plan-b",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.be.brussels.brussels-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "BE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.baden.baden-bitcoin-club",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.roanne.roanne-btc-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.bordeux.decouvre-btc-bordeaux",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.lyss.32-einezw\u00e4nzg-seeland",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.si.ljublijana.ljublijana.btc",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "SI"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.thun.bitcoin-alps",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.es.malaga.malaga-2140",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "ES"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.rennes.breizh-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ci.abidjan.abidjan-community",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "countries": [
+   "CI"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ad.andorra.bitcoin-andorra",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "AD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.konstanz.einundzwanzig-konstanz",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.lausanne.lausanne-btc",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pt.porto.portugal-norte-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gh.accra.bitdevs-accra",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GHS"
+  ],
+  "countries": [
+   "GH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pl.warsaw.dwadziescia-jeden",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "PLN",
+   "EUR"
+  ],
+  "countries": [
+   "PL"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.it.trieste.bitcoin-trieste",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "IT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.geneva.bitcoin-meetup-geneva",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pt.caldas-da-rainha.oeste-bitcoin-maxi",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.goma.kiveclair",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.lubumbashi.bitcoin-jamii",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ng.abuja.digioats",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "countries": [
+   "NG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.martigny.bitcoin-martigny",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.nl.amsterdam-de-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "NL"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.koln.einundzwanzig-koln",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.trier.einundzwanzig-trier",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.es.madrid.bitcoin-tuesdays",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "ES"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.oldenburg.einundzwanzig-oldenburg",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.nl.zwolle.bitcoinstad-zwolle",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "NL"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.at.linz.einundzwanzig-linz",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "AT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fi.helsinki.btchel",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FI"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.es.tenerife.pirate-beach",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "ES"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.rs.belgrade.hub21-bitcoin-only-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "RS"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.munchen.satoshis-lighthouse",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.montevrain.montevrain-btc-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.mt.malta.malta-bitcoin-hub",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "MT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.alsfeld.einundzwanzig",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.neuchatel.beer-2-beer",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.guadeloupe.bitcoin-gwanda",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.goma.goma-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.preston.preston-btc-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.frankfurt.einundzwanzig-frankfurt",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gr.athens.hellenic-btc",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "GR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.zurich.bitcoin-association-switzerland",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.geneva.bitcoin-enthusiasts",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.toulouse.toulose-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.northampton.northants-bitcoin-network",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.metz.metz-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.hr.zagred.balkans-otc-p2p",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "HR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.nl.amsterdam.hard-money-cafe",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "NL"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.montpellier.decouvre-btc-montpellier",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ng.lagos.bitdevs-lagos",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "countries": [
+   "NG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ng.abuja.trezor-academy-nigeria",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "countries": [
+   "NG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.lubumbashi.lubumbashi-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ci.abidjan.abidjan-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "XOF"
+  ],
+  "countries": [
+   "CI"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.southampton.the-satoshi-society",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.edimburgh.bitcoin-walk",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.toulouse.bitcoin-tolosa",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.marseille.decouvre-btc-marseille",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pt.madeira.free-madeira-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.engelberg.bitcoin-for-switzerland",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.bg.sofia.bg-btc-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR",
+   "BGN"
+  ],
+  "countries": [
+   "BG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.basel.einundzwanzig-basel",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.regensburg.einundzwanzig-regensburg",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.dresden.bitcoin-dresden",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ng.calabar.calabar-bitcoin-devs-community",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "countries": [
+   "NG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.berlin.micro-meetup-prager-platz",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ng.abuja.bitdevs-abuja",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "NGN"
+  ],
+  "countries": [
+   "NG"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pt.portimao.bitcoin-tribe-algarve",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "PT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.it.prato.prato-btc-hub",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "IT"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.Ingolstadt.einundzwanzig-ingolstadt",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.lille.decouvre-btc-lille",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ke.nairobi.bitdevs-nairobi",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "KES"
+  ],
+  "countries": [
+   "KE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.bonn.einundzwanzig-bonn",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.cd.kinshasa.bitcoin-jamii",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CDF"
+  ],
+  "countries": [
+   "CD"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.pl.warsaw.beer-and-bitcoin",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "PLN",
+   "EUR"
+  ],
+  "countries": [
+   "PL"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.besancon.decouvre-btc-besancon",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.gb.west-kirby.bitcoin-wirall-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "GBP"
+  ],
+  "countries": [
+   "GB"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.mk.skopje.bitcoin-skopje",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "MK"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.kassel.einundzwanzig-kassel",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.es.barcelona.barcelona-btc-only",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "ES"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.dusseldorf.einundzwanzig-dusseldorf",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.paris.decouvre-btc-paris-centre",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.de.franken.einundzwanzig-franken",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "DE"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.fr.rouen.rouen-bitcoin-meetup",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "EUR"
+  ],
+  "countries": [
+   "FR"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.za.johannesburg.bitdevs-joburg",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "ZAR"
+  ],
+  "countries": [
+   "ZA"
+  ],
+  "rounded": true,
+  "anonymous": true
+ },
+ {
+  "id": "cash.ch.delemont.blockchain-jura",
+  "fields": {
+   "mandatory": [],
+   "optional": []
+  },
+  "currencies": [
+   "CHF",
+   "EUR"
+  ],
+  "countries": [
+   "CH"
+  ],
+  "rounded": true,
+  "anonymous": true
+ }
+]
