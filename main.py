@@ -98,6 +98,12 @@ class PeachWrapper:
         resp = self.__send_request('GET', f'user/referral?code={code}')
         return resp
 
+    # Offer endpoint
+    def get_offer_details(self, offerid: str):
+        resp = self.__send_request('GET', f'offer/{offerid}')
+        return resp
+
+
 
 
 
@@ -129,10 +135,10 @@ def test_market(peach: PeachWrapper):
 def test_user(peach: PeachWrapper):
     user = ("03870fb8d201672926c247e9f98ba43620db1695ed57e9c098f9988a58485a2565")
     print("GET USER ---- ")
-    #print(peach.get_user(user))
+    print(peach.get_user(user))
 
     print("GET USER RATING---- ")
-    #print(peach.get_user_rating(user))
+    print(peach.get_user_rating(user))
 
     print("CHECK REFERAL CODE---- ")
     print(peach.check_referal_code("SATOSHI"))
@@ -140,7 +146,6 @@ def test_user(peach: PeachWrapper):
 
 def main():
     peach: PeachWrapper = PeachWrapper()
-    test_user(peach)
 
 
     pass
