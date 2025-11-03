@@ -99,12 +99,22 @@ class PeachWrapper:
         return resp
 
     # Offer endpoint
+
     def get_offer_details(self, offerid: str):
         resp = self.__send_request('GET', f'offer/{offerid}')
         return resp
 
 
 
+
+
+def main():
+    peach: PeachWrapper = PeachWrapper()
+    test_offer(peach)
+
+    pass
+if __name__ == '__main__':
+    main()
 
 
 # TESTS
@@ -117,7 +127,6 @@ def test_system(peach: PeachWrapper):
 
     print("SYSTEM STATUS ---- ")
     print(peach.system_status())
-
     pass
 
 def test_market(peach: PeachWrapper):
@@ -129,7 +138,6 @@ def test_market(peach: PeachWrapper):
     
     print("ATH PRICES---- ")
     print(peach.ath_prices())
-
     pass
 
 def test_user(peach: PeachWrapper):
@@ -142,12 +150,12 @@ def test_user(peach: PeachWrapper):
 
     print("CHECK REFERAL CODE---- ")
     print(peach.check_referal_code("SATOSHI"))
+    pass
 
-
-def main():
-    peach: PeachWrapper = PeachWrapper()
-
+def test_offer(peach: PeachWrapper):
+    print("GET OFFER DETAILS---- ")
+    print(peach.get_offer_details("114"))
 
     pass
-if __name__ == '__main__':
-    main()
+
+
