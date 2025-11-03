@@ -33,25 +33,37 @@ class PeachWrapper:
 
         pass
 
-    def __send_request(self, method: str, suburl: str) -> dict[str, int | float | str]:
+    def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False) -> dict[str, int | float | str]:
 
-        if method.upper() not in ['GET', 'POST']:
-            raise ValueError(f"Unsupported HTTP method: {method}")
+        if requires_auth and not self.access_token:
+            raise PeachBTCError("Access token required for this endpoint")
 
-        resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}")
 
-        if not resp.ok:
-            try:
-                error_data: dict[str, str] = resp.json()
-                error_message: str = error_data.get('error', f'HTTP {resp.status_code}')
-                error_id: str = error_data.get('id', '')
-            except:
-                error_message = f'HTTP {resp.status_code}: {resp.text}'
-                error_id = '' 
-            
-                raise PeachBTCError(error_message, resp.status_code, error_id)
+        try:
+            if method.upper() not in ['GET', 'POST', 'PUT', 'DELETE']:
+                raise ValueError(f"Unsupported HTTP method: {method}")
+            if method.upper() in ['POST', 'PUT'] :
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", json=data, params=params)
+            else:
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", params=params)
 
-        return resp.json()
+
+
+            if not resp.ok:
+                try:
+                    error_data: dict[str, str] = resp.json()
+                    error_message: str = error_data.get('error', f'HTTP {resp.status_code}')
+                    error_id: str = error_data.get('id', '')
+                except:
+                    error_message = f'HTTP {resp.status_code}: {resp.text}'
+                    error_id = '' 
+                
+                    raise PeachBTCError(error_message, resp.status_code, error_id)
+
+            return resp.json()
+
+        except rq.RequestException as e:
+            raise PeachBTCError(f"Request failed: {str(e)}")
 
 
 
@@ -95,26 +107,37 @@ class PeachWrapper:
         return resp
 
     def check_referal_code(self, code: str):
-        resp = self.__send_request('GET', f'user/referral?code={code}')
+        params = {"code": code}
+        resp = self.__send_request('GET', f'user/referral', params=params)
         return resp
 
-    # Offer endpoint
-
+    # Offer endpoints
     def get_offer_details(self, offerid: str):
-        resp = self.__send_request('GET', f'offer/{offerid}')
+        resp = self.__send_request('GET', f'offer/{offerid}', requires_auth=True)
         return resp
 
+    def search_offers(self, search_criteria: dict, filters: dict):
+        resp = self.__send_request('POST', 'offer/search', data=search_criteria, params=filters)
+        return resp
+
+    # Contact endpoints
+    def send_report(self, email: str, topic: str, reason: str, message: str):
+        data = {
+                "email": email,
+                "topic": topic,
+                "reason": reason,
+                "message": message
+        }
+        resp = self.__send_request('POST', 'contact/report', data=data)
+        return resp
+
+    # TODO: 1) Implement the rest of endpoints
+    # TODO: 2) Authentication !!!!!!!!!!!
+    # TODO: 3) Proper file structure for the wrapper
+    # TODO: 4) Better testing
 
 
 
-
-def main():
-    peach: PeachWrapper = PeachWrapper()
-    test_offer(peach)
-
-    pass
-if __name__ == '__main__':
-    main()
 
 
 # TESTS
@@ -141,7 +164,7 @@ def test_market(peach: PeachWrapper):
     pass
 
 def test_user(peach: PeachWrapper):
-    user = ("03870fb8d201672926c247e9f98ba43620db1695ed57e9c098f9988a58485a2565")
+    user = ("03870fb8d201672926c247e9f98ba43620db1695ed57e9c098f9988a58485a2565") # public key
     print("GET USER ---- ")
     print(peach.get_user(user))
 
@@ -154,8 +177,28 @@ def test_user(peach: PeachWrapper):
 
 def test_offer(peach: PeachWrapper):
     print("GET OFFER DETAILS---- ")
-    print(peach.get_offer_details("114"))
+    #print(peach.get_offer_details("114"))
+    print("SEARCH OFFERS---- ")
+    print(peach.search_offers({
+      #"type": "", bid or ask
+      #"amount": [30000, 2000000],
+      #"meansOfPayment": { "EUR": ["sepa"] },
+      #"maxPremium": 10,
+      #"minReputation": 0.5
+    }, {
+        "sortBy":"lowestPremium"
+
+    }))
 
     pass
 
+
+def main():
+    peach: PeachWrapper = PeachWrapper()
+
+    test_offer(peach)
+
+    pass
+if __name__ == '__main__':
+    main()
 
