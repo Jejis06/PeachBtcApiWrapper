@@ -1,6 +1,9 @@
 ### Example user template template
 ### Example user template
 
+### private files
+priv.py
+
 # IntelliJ project files
 .idea
 *.iml

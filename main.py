@@ -1,4 +1,13 @@
 import requests as rq
+import time
+import hashlib
+import ecdsa
+from ecdsa.keys import VerifyingKey
+import os
+
+# Used only for testing the api veryfication system
+from priv import pkey, unique_id
+import json
 
 # TODO: gl for erroro check
 class PeachBTCError(Exception):
@@ -18,6 +27,7 @@ class PeachWrapper:
         self.version: str = 'v1'
         self.base_url: str = "https://api.peachbitcoin.com"
         self.access_token: str = access_token
+        self.expiry: int = -1
 
         self.session: rq.Session = rq.Session()
         self.session.headers.update({
@@ -26,12 +36,66 @@ class PeachWrapper:
         })
 
         # set access token (encrypted private key)
+        self.__set_access_token()
+        pass
+
+    # Authentication
+
+
+    def set_access_token(self, private_key_hex: str, unique_id:str | None = None,register: bool = True):
+        if register:
+            url = "user/register" 
+        else: url = "user/auth"
+
+        try:
+            private_key_bytes = bytes.fromhex(private_key_hex)
+            signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=ecdsa.SECP256k1)
+        except Exception as e:
+            raise PeachBTCError(f"Error: Invalid private key. Make sure it's a 64-char hex string. {e}")
+
+        veryfying_key: VerifyingKey = signing_key.get_verifying_key()
+        public_key: str = veryfying_key.to_string("compressed").hex()
+
+        timestamp = int(time.time() * 1000)
+        message_to_sign = f"Peach Registration {timestamp}"
+
+        try:
+            signature_bytes = signing_key.sign(
+                    message_to_sign.encode('utf-8'),
+                    hashfunc = hashlib.sha256
+            )
+            signature_hex = signature_bytes.hex()
+        except Exception as e:
+            raise PeachBTCError(f"Error during message signing: {e}")
+
+
+        data = {
+                "publicKey": public_key,
+                "message" : message_to_sign,
+                "signature": signature_hex
+        }
+
+        if unique_id is not None: data["uniqueId"] = unique_id
+        resp = self.__send_request('POST', url, data)
+
+        if "error" in resp:
+            raise PeachBTCError(f"{resp['error']}")
+
+
+        self.access_token = str(resp['accessToken'])
+        self.expiry = int(resp['expiry'])
+
+
+        self.__set_access_token()
+        pass
+
+
+    # helper function to write acces token to query headers
+    def __set_access_token(self) -> None:
         if self.access_token != '':
             self.session.headers.update({
                 'Authorization': f'Bearer {self.access_token}'
             })
-
-        pass
 
     def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False) -> dict[str, int | float | str]:
 
@@ -131,10 +195,13 @@ class PeachWrapper:
         resp = self.__send_request('POST', 'contact/report', data=data)
         return resp
 
-    # TODO: 1) Implement the rest of endpoints
-    # TODO: 2) Authentication !!!!!!!!!!!
-    # TODO: 3) Proper file structure for the wrapper
-    # TODO: 4) Better testing
+    # TODO: 1) Implement the rest of endpoints               (_)
+    # TODO: 2) Authentication !!!!!!!!!!!                    (*)
+    # TODO: 3) Proper file structure for the wrapper         (_)
+    # TODO: 4) Better testing                                (_)
+
+    # Private endpoints
+
 
 
 
@@ -177,7 +244,7 @@ def test_user(peach: PeachWrapper):
 
 def test_offer(peach: PeachWrapper):
     print("GET OFFER DETAILS---- ")
-    #print(peach.get_offer_details("114"))
+    print(peach.get_offer_details("114"))
     print("SEARCH OFFERS---- ")
     print(peach.search_offers({
       #"type": "", bid or ask
@@ -192,11 +259,35 @@ def test_offer(peach: PeachWrapper):
 
     pass
 
+def test_offer_private(peach: PeachWrapper):
+
+    offers = (peach.search_offers({
+      #"type": "", bid or ask
+      #"amount": [30000, 2000000],
+      #"meansOfPayment": { "EUR": ["sepa"] },
+      #"maxPremium": 10,
+      #"minReputation": 0.5
+    }, {
+        "sortBy":"lowestPremium"
+
+    }))
+
+    offer: dict[str, str] = offers['offers'][0]
+    id = offer['id']
+
+    offer = peach.get_offer_details(id)
+    print(json.dumps(offer, indent=4))
+
+
+
+
 
 def main():
     peach: PeachWrapper = PeachWrapper()
+    peach.set_access_token(pkey, unique_id=unique_id, register=False)
 
-    test_offer(peach)
+
+
 
     pass
 if __name__ == '__main__':
