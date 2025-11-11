@@ -3,20 +3,24 @@ import time
 import hashlib
 import ecdsa
 from ecdsa.keys import VerifyingKey
-import os
 
 # Used only for testing the api veryfication system
 from priv import pkey, unique_id
 import json
+# gl for erroro check
 
-# TODO: gl for erroro check
+
+# TODO: 1) Implement the rest of endpoints               (_)
+# TODO: 2) Authentication !!!!!!!!!!!                    (*)
+# TODO: 3) Proper file structure for the wrapper         (_)
+# TODO: 4) Better testing                                (_)
+
 class PeachBTCError(Exception):
     def __init__(self, message: str, status_code: int = 999, err_id: str = ""):
         self.message: str = message
         self.status_code: int = status_code
         self.error_id: str = err_id
         super().__init__(self.message)
-
 
 
 class PeachWrapper:
@@ -42,7 +46,7 @@ class PeachWrapper:
     # Authentication
 
 
-    def set_access_token(self, private_key_hex: str, unique_id:str | None = None,register: bool = True):
+    def set_access_token(self, private_key_hex: str, unique_id:str | None = None, register: bool = True):
         if register:
             url = "user/register" 
         else: url = "user/auth"
@@ -129,11 +133,8 @@ class PeachWrapper:
         except rq.RequestException as e:
             raise PeachBTCError(f"Request failed: {str(e)}")
 
-
-
-
     # Public endpoints
-    
+
     # System endpoints 
     def system_status(self):
         resp = self.__send_request('GET', 'system/status')
@@ -147,7 +148,7 @@ class PeachWrapper:
         resp = self.__send_request('GET', 'system/info/paymentMethods')
         return resp
 
-    # Market endpoints 
+    # Public market endpoints 
     def market_price(self, pair: str):
         resp = self.__send_request('GET', f'market/price/{pair}')
         return resp
@@ -160,7 +161,7 @@ class PeachWrapper:
         resp = self.__send_request('GET','market/tradePricePeaks')
         return resp
 
-    # User endpoints
+    # Public user endpoints
     def get_user(self, userid: str):
         # userid = public key
         resp = self.__send_request('GET', f'user/{userid}')
@@ -175,7 +176,7 @@ class PeachWrapper:
         resp = self.__send_request('GET', f'user/referral', params=params)
         return resp
 
-    # Offer endpoints
+    # Public offer endpoints
     def get_offer_details(self, offerid: str):
         resp = self.__send_request('GET', f'offer/{offerid}', requires_auth=True)
         return resp
@@ -184,7 +185,7 @@ class PeachWrapper:
         resp = self.__send_request('POST', 'offer/search', data=search_criteria, params=filters)
         return resp
 
-    # Contact endpoints
+    # Public contact endpoints
     def send_report(self, email: str, topic: str, reason: str, message: str):
         data = {
                 "email": email,
@@ -195,14 +196,48 @@ class PeachWrapper:
         resp = self.__send_request('POST', 'contact/report', data=data)
         return resp
 
-    # TODO: 1) Implement the rest of endpoints               (_)
-    # TODO: 2) Authentication !!!!!!!!!!!                    (*)
-    # TODO: 3) Proper file structure for the wrapper         (_)
-    # TODO: 4) Better testing                                (_)
+    # Public blockchain endpoints
+    def get_transaction_data(self, txid: str):
+        resp = self.__send_request('GET', f'tx/{txid}')
+        return resp
+
+    def post_transaction(self, tx_hex: str):
+        data = {
+                'tx': tx_hex
+        }
+        resp = self.__send_request('POST', 'tx', data=data)
+        return resp
+    
+    def get_fee_estimates(self):
+        resp = self.__send_request('GET', 'estimateFees')
+        return resp
 
     # Private endpoints
 
+    # Private user endpoints
+    def get_self_user(self):
+        resp = self.__send_request('GET', 'user/me', requires_auth=True)
+        return resp
 
+    def get_self_payment_method_info(self):
+        resp = self.__send_request('GET', 'user/me/paymentMethods', requires_auth=True)
+        return resp
+
+    def get_self_trading_limits(self):
+        resp = self.__send_request('GET', 'user/tradingLimit', requires_auth=True)
+        return resp
+
+    def update_self_user(self, data: dict[str, str | int]):
+        if "pgpPublicKey" in data:
+            if "message" not in data:
+                raise PeachBTCError("If pgppublickey passed 'message' to be signed with secret PGP keys is required")
+            elif "pgpSignature" not in data:
+                raise PeachBTCError("If pgppublickey passed 'pgpSignature' for message is required")
+            elif "signature" not in data:
+                raise PeachBTCError("If pgppublickey passed 'signature' by the Peach account of the new pgpPublicKey as message is required")
+
+        resp = self.__send_request('PATCH', 'user', data=data, requires_auth=True)
+        return resp
 
 
 
@@ -285,6 +320,10 @@ def test_offer_private(peach: PeachWrapper):
 def main():
     peach: PeachWrapper = PeachWrapper()
     peach.set_access_token(pkey, unique_id=unique_id, register=False)
+    print(peach.get_self_user())
+    print(peach.get_fee_estimates())
+    print(peach.get_self_payment_method_info())
+    print(peach.get_self_trading_limits())
 
 
 
