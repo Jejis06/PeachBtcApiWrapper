@@ -4,6 +4,8 @@ import hashlib
 import ecdsa
 from ecdsa.keys import VerifyingKey
 
+from typing import Any
+
 # Used only for testing the api veryfication system
 from priv import pkey, unique_id
 import json
@@ -33,6 +35,7 @@ class PeachWrapper:
         self.base_url: str = "https://api.peachbitcoin.com"
         self.access_token: str = access_token
         self.expiry: int = -1
+        self.user_id: str = "" 
 
         self.session: rq.Session = rq.Session()
         self.session.headers.update({
@@ -90,8 +93,8 @@ class PeachWrapper:
         self.access_token = str(resp['accessToken'])
         self.expiry = int(resp['expiry'])
 
-
-        self.__set_access_token()
+        self.__set_access_token() 
+        self.user_id = self.get_self_user()['id']
         pass
 
 
@@ -272,7 +275,25 @@ class PeachWrapper:
         resp = self.__send_request('PATCH', 'user/logout', requires_auth=True)
         return resp
 
+
     # Private offer endpoints
+    def get_own_offer_details(self, offerid: str):
+        resp = self.__send_request('GET', f'offer/{offerid}/details', requires_auth=True)
+        return resp
+
+    def get_own_offers(self):
+        resp = self.__send_request('GET', 'offers', requires_auth=True)
+        return resp
+
+    def get_own_offers_summaries(self):
+        resp = self.__send_request('GET', 'offers/summary', requires_auth=True)
+        return resp
+
+    def post_buy_offer(self, releaseAddress: str, paymentData: dict[Any, Any], meansOfPayment: dict[Any, Any], ammount_range: tuple[int, int], maxPremium: str|None = None, type: str = "bid"):
+        messasge = f"I confirm that only I, peach{self.user_id}, control the address {releaseAddress}"
+        # needs finishing
+
+        #ammount_range = list(ammount_range)
 
 
 
@@ -360,9 +381,11 @@ def main():
     peach: PeachWrapper = PeachWrapper()
     peach.set_access_token(pkey, unique_id=unique_id, register=False)
     print(peach.get_self_user())
-    print(peach.get_fee_estimates())
-    print(peach.get_self_payment_method_info())
-    print(peach.get_self_trading_limits())
+    peach.post_buy_offer((1,2))
+    #print(peach.get_own_offers())
+    # print(peach.get_fee_estimates())
+    # print(peach.get_self_payment_method_info())
+    # print(peach.get_self_trading_limits())
 
 
 
