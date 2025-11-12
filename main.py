@@ -12,6 +12,7 @@ import json
 
 # TODO: 1) Implement the rest of endpoints               (_)
 # TODO: 2) Authentication !!!!!!!!!!!                    (*)
+# TODO: 2.1) Add token out off time functionality        (_)
 # TODO: 3) Proper file structure for the wrapper         (_)
 # TODO: 4) Better testing                                (_)
 
@@ -108,9 +109,9 @@ class PeachWrapper:
 
 
         try:
-            if method.upper() not in ['GET', 'POST', 'PUT', 'DELETE']:
+            if method.upper() not in ['PATCH', 'GET', 'POST', 'PUT', 'DELETE']:
                 raise ValueError(f"Unsupported HTTP method: {method}")
-            if method.upper() in ['POST', 'PUT'] :
+            if method.upper() in ['POST', 'PUT', 'PATCH'] :
                 resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", json=data, params=params)
             else:
                 resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", params=params)
@@ -238,6 +239,44 @@ class PeachWrapper:
 
         resp = self.__send_request('PATCH', 'user', data=data, requires_auth=True)
         return resp
+
+    def get_user_status(self, userid: str):
+        resp = self.__send_request('GET', f'user/{userid}/status', requires_auth=True)
+        return resp
+
+    def block_user(self, userid: str):
+        resp = self.__send_request('PUT', f'user/{userid}/block', requires_auth=True)
+        return resp
+    
+    def unblock_user(self, userid: str):
+        resp = self.__send_request('DELETE', f'user/{userid}/block', requires_auth=True)
+        return resp
+
+    def user_manage_batching(self, enable: bool):
+        resp = self.__send_request('PATCH', 'user/batching', data={"enableBatching" : enable}, requires_auth=True)
+        return resp
+
+    def user_redeem_referral_code(self, code: str):
+        resp = self.__send_request('PATCH', 'user/referral/redeem/referralCode', data={"code": code}, requires_auth=True)
+        return resp
+
+    def user_redeem_free_trades(self):
+        resp = self.__send_request('PATCH', 'user/referral/redeem/fiveFreeTrades', requires_auth=True)
+        return resp
+
+    def user_unlink_payment_hashes(self, hashes: list[str]):
+        resp = self.__send_request('PATCH', 'user/paymentHash', data={"hashes":hashes}, requires_auth=True)
+        return resp
+
+    def logout(self):
+        resp = self.__send_request('PATCH', 'user/logout', requires_auth=True)
+        return resp
+
+    # Private offer endpoints
+
+
+
+
 
 
 
