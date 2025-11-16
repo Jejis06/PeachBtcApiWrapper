@@ -27,8 +27,10 @@ class PeachBTCError(Exception):
 
 
 class PeachWrapper:
-    def __init__(self, access_token: str = ""):
+    def __init__(self, access_token: str = "", private_key_hex: str = ""):
 
+        # User information
+        self.private_key_hex: str = private_key_hex
 
         # Peach information
         self.version: str = 'v1'
@@ -47,7 +49,36 @@ class PeachWrapper:
         self.__set_access_token()
         pass
 
-    # Authentication
+    # Authentication / core signing functionality
+
+    def __sign_message(self, message_to_sign:str, private_key_hex_arg:str = "", hashfunc:"hashlib._Hash" = hashlib.sha256, curve:ecdsa.curves.Curve = ecdsa.SECP256k1)-> tuple[str, str]:
+        if self.private_key_hex == '' and private_key_hex_arg == '':
+            raise PeachBTCError("No private key provided")
+
+        if self.private_key_hex == '' or private_key_hex_arg != '':
+            self.private_key_hex = private_key_hex_arg
+
+
+        try:
+            private_key_bytes: bytes = bytes.fromhex(self.private_key_hex)
+            signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=curve)
+        except Exception as e:
+            raise PeachBTCError(f"Error: Invalid private key. Make sure it's a 64-char hex string. {e}")
+
+        veryfying_key: VerifyingKey = signing_key.get_verifying_key()
+        public_key: str = veryfying_key.to_string("compressed").hex()
+
+        try:
+            signature_bytes = signing_key.sign(
+                    message_to_sign.encode('utf-8'),
+                    hashfunc = hashfunc 
+            )
+            signature_hex:str = signature_bytes.hex()
+        except Exception as e:
+            raise PeachBTCError(f"Error during message signing: {e}")
+
+        return (signature_hex, public_key)
+
 
 
     def set_access_token(self, private_key_hex: str, unique_id:str | None = None, register: bool = True):
@@ -55,27 +86,10 @@ class PeachWrapper:
             url = "user/register" 
         else: url = "user/auth"
 
-        try:
-            private_key_bytes = bytes.fromhex(private_key_hex)
-            signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=ecdsa.SECP256k1)
-        except Exception as e:
-            raise PeachBTCError(f"Error: Invalid private key. Make sure it's a 64-char hex string. {e}")
-
-        veryfying_key: VerifyingKey = signing_key.get_verifying_key()
-        public_key: str = veryfying_key.to_string("compressed").hex()
 
         timestamp = int(time.time() * 1000)
         message_to_sign = f"Peach Registration {timestamp}"
-
-        try:
-            signature_bytes = signing_key.sign(
-                    message_to_sign.encode('utf-8'),
-                    hashfunc = hashlib.sha256
-            )
-            signature_hex = signature_bytes.hex()
-        except Exception as e:
-            raise PeachBTCError(f"Error during message signing: {e}")
-
+        signature_hex, public_key = self.__sign_message(message_to_sign, private_key_hex)
 
         data = {
                 "publicKey": public_key,
@@ -95,7 +109,6 @@ class PeachWrapper:
 
         self.__set_access_token() 
         self.user_id = self.get_self_user()['id']
-        pass
 
 
     # helper function to write acces token to query headers
@@ -231,14 +244,19 @@ class PeachWrapper:
         resp = self.__send_request('GET', 'user/tradingLimit', requires_auth=True)
         return resp
 
-    def update_self_user(self, data: dict[str, str | int]):
+    def update_self_user(self, data: dict[str, str | int], private_key_for_public_hex: str | None = None):
         if "pgpPublicKey" in data:
             if "message" not in data:
                 raise PeachBTCError("If pgppublickey passed 'message' to be signed with secret PGP keys is required")
-            elif "pgpSignature" not in data:
-                raise PeachBTCError("If pgppublickey passed 'pgpSignature' for message is required")
-            elif "signature" not in data:
-                raise PeachBTCError("If pgppublickey passed 'signature' by the Peach account of the new pgpPublicKey as message is required")
+            elif private_key_for_public_hex is None:
+                raise PeachBTCError("If pgppublickey passed private key for that public key is required to be passed to the function")
+
+            signature, _ = self.__sign_message(data['message'])
+            pgpsignature, _ = self.__sign_message(data['message'] ,private_key_for_public_hex)
+
+            data['signature'] = signature
+            data['pgpSignature'] = pgpsignature
+
 
         resp = self.__send_request('PATCH', 'user', data=data, requires_auth=True)
         return resp
