@@ -7,6 +7,7 @@ from ecdsa.keys import VerifyingKey
 from typing import Any
 
 # Used only for testing the api veryfication system
+from rich import inspect
 from priv import pkey, unique_id
 import json
 # gl for erroro check
@@ -18,12 +19,41 @@ import json
 # TODO: 3) Proper file structure for the wrapper         (_)
 # TODO: 4) Better testing                                (_)
 
+
 class PeachBTCError(Exception):
     def __init__(self, message: str, status_code: int = 999, err_id: str = ""):
         self.message: str = message
         self.status_code: int = status_code
         self.error_id: str = err_id
         super().__init__(self.message)
+
+class PeachPaymentData():
+    def __init__(self, payment_type: str, **required_fields: str):
+        self.payment_type: str = payment_type
+        self.payment_fields: dict[str, str]  = required_fields 
+
+    def create_hash(self) -> tuple[str, dict[str, list[str]]]:
+        hashed_values: list[str] = []
+        for value in self.payment_fields.values():
+            encoded_item = value.encode('utf-8')
+            hashed_item: str = hashlib.sha256(encoded_item).hexdigest()
+
+            hashed_values.append(hashed_item)
+
+        return (self.payment_type, {"hashes":hashed_values})
+
+class PeachMeansOfPayment():
+    def __init__(self, payment_type: dict[str, list[str]]):
+        self.payment_type: dict[str, list[str]] = payment_type
+
+    def add_new_type(self, currency: str, payment_methods: list[str]):
+        if currency in self.payment_type:
+            # continue here almost at the proper implementation of post buy offer 
+            
+
+
+
+
 
 
 class PeachWrapper:
@@ -47,20 +77,35 @@ class PeachWrapper:
 
         # set access token (encrypted private key)
         self.__set_access_token()
-        pass
 
     # Authentication / core signing functionality
 
-    def __sign_message(self, message_to_sign:str, private_key_hex_arg:str = "", hashfunc:"hashlib._Hash" = hashlib.sha256, curve:ecdsa.curves.Curve = ecdsa.SECP256k1)-> tuple[str, str]:
+    def get_own_user_id(self) -> str:
+        return self.get_public_key() 
+
+    def get_public_key(self) -> str:
+        try:
+            private_key_bytes: bytes = bytes.fromhex(self.private_key_hex)
+            signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=curve)
+        except Exception as e:
+            raise PeachBTCError(f"Error: Invalid private key. Make sure it's a 64-char hex string. {e}")
+
+        veryfying_key: VerifyingKey = signing_key.get_verifying_key()
+        return str(veryfying_key.to_string("compressed").hex())
+
+    def __set_new_private_key(self, new_key: str) -> None:
+        self.private_key_hex = new_key
+        return None
+
+    def __sign_message(self, message_to_sign: str, private_key_hex_arg: str = "", hashfunc: "hashlib._Hash" = hashlib.sha256, curve: ecdsa.curves.Curve = ecdsa.SECP256k1)-> tuple[str, str]:
         if self.private_key_hex == '' and private_key_hex_arg == '':
             raise PeachBTCError("No private key provided")
 
-        if self.private_key_hex == '' or private_key_hex_arg != '':
-            self.private_key_hex = private_key_hex_arg
+        private_key = self.private_key_hex if (private_key_hex_arg == "") else private_key_hex_arg
 
 
         try:
-            private_key_bytes: bytes = bytes.fromhex(self.private_key_hex)
+            private_key_bytes: bytes = bytes.fromhex(private_key)
             signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=curve)
         except Exception as e:
             raise PeachBTCError(f"Error: Invalid private key. Make sure it's a 64-char hex string. {e}")
@@ -108,7 +153,8 @@ class PeachWrapper:
         self.expiry = int(resp['expiry'])
 
         self.__set_access_token() 
-        self.user_id = self.get_self_user()['id']
+        self.user_id = public_key 
+        self.private_key_hex = private_key_hex
 
 
     # helper function to write acces token to query headers
@@ -158,11 +204,11 @@ class PeachWrapper:
         return resp 
        
     def info(self):
-        resp = self.__send_request('GET', 'system/info')
+        resp = self.__send_request('GET', 'info')
         return resp
 
     def payment_methods(self):
-        resp = self.__send_request('GET', 'system/info/paymentMethods')
+        resp = self.__send_request('GET', 'info/paymentMethods')
         return resp
 
     # Public market endpoints 
@@ -253,6 +299,8 @@ class PeachWrapper:
 
             signature, _ = self.__sign_message(data['message'])
             pgpsignature, _ = self.__sign_message(data['message'] ,private_key_for_public_hex)
+
+            self.__set_new_private_key(private_key_for_public_hex)
 
             data['signature'] = signature
             data['pgpSignature'] = pgpsignature
@@ -396,10 +444,16 @@ def test_offer_private(peach: PeachWrapper):
 
 
 def main():
-    peach: PeachWrapper = PeachWrapper()
-    peach.set_access_token(pkey, unique_id=unique_id, register=False)
-    print(peach.get_self_user())
-    peach.post_buy_offer((1,2))
+    a_t = "LBuBP+R0kSV4BGKqZIewGwq9Jz6hPU3X0aT9P1+JRJY="
+    peach: PeachWrapper = PeachWrapper(access_token=a_t, private_key_hex=pkey)
+    #peach.set_access_token(pkey, unique_id=unique_id, register=False)
+    #print(peach.access_token)
+    #print(peach.private_key_hex, peach.user_id, peach.access_token, peach.expiry)
+    #inspect(peach, methods=True, private=True)
+    #inspect(peach.get_self_user())
+    inspect(peach.info())
+    #print(json.dumps(peach.get_self_user(), indent=4))
+    #peach.post_buy_offer((1,2))
     #print(peach.get_own_offers())
     # print(peach.get_fee_estimates())
     # print(peach.get_self_payment_method_info())
