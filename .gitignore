@@ -3,6 +3,8 @@
 
 ### private files
 priv.py
+changetohex.py
+
 
 # IntelliJ project files
 .idea

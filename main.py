@@ -4,11 +4,12 @@ import hashlib
 import ecdsa
 from ecdsa.keys import VerifyingKey
 
+import itertools
 from typing import Any
 
 # Used only for testing the api veryfication system
 from rich import inspect
-from priv import pkey, unique_id
+from priv import pkey, pkeywall, unique_id, pubkeywall
 import json
 # gl for erroro check
 
@@ -32,6 +33,7 @@ class PeachPaymentData():
         self.payment_type: str = payment_type
         self.payment_fields: dict[str, str]  = required_fields 
 
+
     def create_hash(self) -> tuple[str, dict[str, list[str]]]:
         hashed_values: list[str] = []
         for value in self.payment_fields.values():
@@ -48,8 +50,22 @@ class PeachMeansOfPayment():
 
     def add_new_type(self, currency: str, payment_methods: list[str]):
         if currency in self.payment_type:
+            self.payment_type[currency] = list(set(itertools.chain(self.payment_type[currency], payment_methods)))
+        else:
+            self.payment_type[currency].extend(payment_methods)
+
+    def get(self):
+        return self.payment_type
+            
             # continue here almost at the proper implementation of post buy offer 
             
+def type_tester():
+    payment1 = PeachPaymentData("paypal", phone="+6818923719897231937")
+    inspect(payment1)
+    print(payment1.create_hash())
+
+    mop = PeachMeansOfPayment({ "EUR": ["sepa", "paypal"], "CHF": ["twint", "paypal"] })
+    inspect(mop)
 
 
 
@@ -83,7 +99,7 @@ class PeachWrapper:
     def get_own_user_id(self) -> str:
         return self.get_public_key() 
 
-    def get_public_key(self) -> str:
+    def get_public_key(self, curve: ecdsa.curves.Curve = ecdsa.SECP256k1) -> str:
         try:
             private_key_bytes: bytes = bytes.fromhex(self.private_key_hex)
             signing_key: ecdsa.SigningKey = ecdsa.SigningKey.from_string(private_key_bytes, curve=curve)
@@ -126,10 +142,12 @@ class PeachWrapper:
 
 
 
-    def set_access_token(self, private_key_hex: str, unique_id:str | None = None, register: bool = True):
+    def set_access_token(self, private_key_hex: str | None = None, unique_id:str | None = None, register: bool = True):
         if register:
             url = "user/register" 
         else: url = "user/auth"
+        if private_key_hex is None:
+            private_key_hex = self.private_key_hex
 
 
         timestamp = int(time.time() * 1000)
@@ -156,6 +174,8 @@ class PeachWrapper:
         self.user_id = public_key 
         self.private_key_hex = private_key_hex
 
+        return resp
+
 
     # helper function to write acces token to query headers
     def __set_access_token(self) -> None:
@@ -164,19 +184,24 @@ class PeachWrapper:
                 'Authorization': f'Bearer {self.access_token}'
             })
 
-    def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False) -> dict[str, int | float | str]:
+    def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False, pgp_auth: bool = False) -> dict[str, int | float | str]:
 
         if requires_auth and not self.access_token:
             raise PeachBTCError("Access token required for this endpoint")
+
+        headers = self.session.headers
+        if pgp_auth == True:
+            headers['X-PGP-Signature'] = self.__generate_peach_
+
 
 
         try:
             if method.upper() not in ['PATCH', 'GET', 'POST', 'PUT', 'DELETE']:
                 raise ValueError(f"Unsupported HTTP method: {method}")
             if method.upper() in ['POST', 'PUT', 'PATCH'] :
-                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", json=data, params=params)
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}",headers=headers, json=data, params=params)
             else:
-                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", params=params)
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}",headers=headers, params=params)
 
 
 
@@ -355,11 +380,31 @@ class PeachWrapper:
         resp = self.__send_request('GET', 'offers/summary', requires_auth=True)
         return resp
 
-    def post_buy_offer(self, releaseAddress: str, paymentData: dict[Any, Any], meansOfPayment: dict[Any, Any], ammount_range: tuple[int, int], maxPremium: str|None = None, type: str = "bid"):
-        messasge = f"I confirm that only I, peach{self.user_id}, control the address {releaseAddress}"
-        # needs finishing
+    def post_buy_offer(self,addressPrivateKey: str, releaseAddress: str, paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, ammount_range: tuple[int, int], maxPremium: int|None = None):
+        message: str = f"I confirm that only I, peach{self.user_id}, control the address {releaseAddress}"
+        signature = self.__sign_message(message_to_sign=message, private_key_hex_arg=addressPrivateKey) [ 0 ]
+        payments: dict[str, dict[str, list[str]]]= {}
 
-        #ammount_range = list(ammount_range)
+        ammount_range:list[int] = [ammount_range[0], ammount_range[1]]
+
+        for it in paymentData:
+            pm, sha = it.create_hash()
+            payments[pm] = sha
+
+        data = {
+                'type' : 'bid',
+                'amount': ammount_range,
+                'meansOfPayment': meansOfPayment.get(),
+                'paymentData': payments,
+                'releaseAddress':releaseAddress,
+                'messageSignature': signature
+                }
+        inspect(data)
+
+        if maxPremium is not None:
+            data['maxPremium'] = maxPremium
+
+        return self.__send_request('POST', 'offer', data= data, requires_auth=True)
 
 
 
@@ -444,19 +489,32 @@ def test_offer_private(peach: PeachWrapper):
 
 
 def main():
-    a_t = "LBuBP+R0kSV4BGKqZIewGwq9Jz6hPU3X0aT9P1+JRJY="
-    peach: PeachWrapper = PeachWrapper(access_token=a_t, private_key_hex=pkey)
-    #peach.set_access_token(pkey, unique_id=unique_id, register=False)
+    #type_tester()
+    #exit(0)
+
+    #a_t = "LBuBP+R0kSV4BGKqZIewGwq9Jz6hPU3X0aT9P1+JRJY="
+    peach: PeachWrapper = PeachWrapper(private_key_hex=pkey)
+    res = peach.set_access_token(unique_id=unique_id, register=False)
+    print(json.dumps(res, indent=4))
     #print(peach.access_token)
     #print(peach.private_key_hex, peach.user_id, peach.access_token, peach.expiry)
     #inspect(peach, methods=True, private=True)
-    #inspect(peach.get_self_user())
-    inspect(peach.info())
+    print(json.dumps(peach.get_self_user(), indent=4))
+    #inspect(peach.info())
     #print(json.dumps(peach.get_self_user(), indent=4))
     #peach.post_buy_offer((1,2))
-    #print(peach.get_own_offers())
+    pmntd = [PeachPaymentData("paypal", phone="+111111111")]
+    mop = PeachMeansOfPayment({ "EUR": ["paypal"]})
+
+    #print(peach.post_buy_offer(addressPrivateKey=pkeywall, releaseAddress=pubkeywall, paymentData=pmntd, meansOfPayment=mop, ammount_range=(20000,40000), maxPremium=-2))
+    '''
+    (self,addressPrivateKey: str, releaseAddress: str, 
+     paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, 
+     ammount_range: tuple[int, int], maxPremium: str|None = None):
+        '''
+
     # print(peach.get_fee_estimates())
-    # print(peach.get_self_payment_method_info())
+    #print(peach.get_self_payment_method_info())
     # print(peach.get_self_trading_limits())
 
 
