@@ -1,18 +1,31 @@
 import requests as rq
+import sys
 import time
+import itertools
+
 import hashlib
 import ecdsa
 from ecdsa.keys import VerifyingKey
 
-import itertools
-from typing import Any
+# --------- Compatibility patch for pgpy on python 3.13+ --------- 
+try: 
+    import imgdhr
+except ImportError:
+    import types
+    fix_imghdr = types.ModuleType("imghdr")
+    # hacky fix = just make it None
+    fix_imghdr.what = lambda file, h=None: None
+    sys.modules['imghdr'] = fix_imghdr
+
+import pgpy
+
 
 # Used only for testing the api veryfication system
 from rich import inspect
-from priv import pkey, pkeywall, unique_id, pubkeywall
+from priv import pkey, pkeywall, unique_id, pubkeywall, pgp_passphrase_str, pgp_private_key_str, pgp_public_key_str
 import json
-# gl for erroro check
 
+# gl for erroro check
 
 # TODO: 1) Implement the rest of endpoints               (_)
 # TODO: 2) Authentication !!!!!!!!!!!                    (*)
@@ -57,24 +70,10 @@ class PeachMeansOfPayment():
     def get(self):
         return self.payment_type
             
-            # continue here almost at the proper implementation of post buy offer 
-            
-def type_tester():
-    payment1 = PeachPaymentData("paypal", phone="+6818923719897231937")
-    inspect(payment1)
-    print(payment1.create_hash())
-
-    mop = PeachMeansOfPayment({ "EUR": ["sepa", "paypal"], "CHF": ["twint", "paypal"] })
-    inspect(mop)
-
-
-
-
 
 
 class PeachWrapper:
     def __init__(self, access_token: str = "", private_key_hex: str = ""):
-
         # User information
         self.private_key_hex: str = private_key_hex
 
@@ -113,11 +112,28 @@ class PeachWrapper:
         self.private_key_hex = new_key
         return None
 
+    def __sign_message_pgp(self, message_to_sign: str, private_key_str: str, passphrase: str | None = None) -> str:
+        try:
+            priv_key, _ = pgpy.PGPKey.from_blob(private_key_str)
+
+            message = pgpy.PGPMessage.new(message_to_sign)
+            if passphrase and priv_key.is_protected:
+                with priv_key.unlock(passphrase):
+                    signature: str = str(priv_key.sign(message))
+            else:
+                signature: str = str(priv_key.sign(message))
+
+            return signature
+        except Exception as e:
+            raise PeachBTCError(f"PGP Signing Error: {e}")
+
+
     def __sign_message(self, message_to_sign: str, private_key_hex_arg: str = "", hashfunc: "hashlib._Hash" = hashlib.sha256, curve: ecdsa.curves.Curve = ecdsa.SECP256k1)-> tuple[str, str]:
         if self.private_key_hex == '' and private_key_hex_arg == '':
             raise PeachBTCError("No private key provided")
 
         private_key = self.private_key_hex if (private_key_hex_arg == "") else private_key_hex_arg
+        print(private_key)
 
 
         try:
@@ -184,24 +200,18 @@ class PeachWrapper:
                 'Authorization': f'Bearer {self.access_token}'
             })
 
-    def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False, pgp_auth: bool = False) -> dict[str, int | float | str]:
+    def __send_request(self, method: str, suburl: str, data: dict = {} , params: dict = {}, requires_auth: bool = False) -> dict[str, int | float | str]:
 
         if requires_auth and not self.access_token:
             raise PeachBTCError("Access token required for this endpoint")
-
-        headers = self.session.headers
-        if pgp_auth == True:
-            headers['X-PGP-Signature'] = self.__generate_peach_
-
-
 
         try:
             if method.upper() not in ['PATCH', 'GET', 'POST', 'PUT', 'DELETE']:
                 raise ValueError(f"Unsupported HTTP method: {method}")
             if method.upper() in ['POST', 'PUT', 'PATCH'] :
-                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}",headers=headers, json=data, params=params)
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", json=data, params=params)
             else:
-                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}",headers=headers, params=params)
+                resp = self.session.request(method, f"{self.base_url}/{self.version}/{suburl}", params=params)
 
 
 
@@ -315,17 +325,18 @@ class PeachWrapper:
         resp = self.__send_request('GET', 'user/tradingLimit', requires_auth=True)
         return resp
 
-    def update_self_user(self, data: dict[str, str | int], private_key_for_public_hex: str | None = None):
+    def update_self_user(self, data: dict[str, str | int], pgp_private_key: str | None = None, pgp_passphrase: str | None = None):
+
         if "pgpPublicKey" in data:
             if "message" not in data:
-                raise PeachBTCError("If pgppublickey passed 'message' to be signed with secret PGP keys is required")
-            elif private_key_for_public_hex is None:
-                raise PeachBTCError("If pgppublickey passed private key for that public key is required to be passed to the function")
+                raise PeachBTCError("If pgpPublicKey is passed, a 'message' string to be signed is required in data.")
+            elif pgp_private_key is None:
+                raise PeachBTCError("If pgpPublicKey is passed, the corresponding PGP private key is required to sign the proof message.")
 
-            signature, _ = self.__sign_message(data['message'])
-            pgpsignature, _ = self.__sign_message(data['message'] ,private_key_for_public_hex)
+            signature, _ = self.__sign_message(str( data['pgpPublicKey'] ))
+            print(signature)
+            pgpsignature = self.__sign_message_pgp(str( data['message'] ), pgp_private_key, pgp_passphrase)
 
-            self.__set_new_private_key(private_key_for_public_hex)
 
             data['signature'] = signature
             data['pgpSignature'] = pgpsignature
@@ -397,7 +408,7 @@ class PeachWrapper:
                 'meansOfPayment': meansOfPayment.get(),
                 'paymentData': payments,
                 'releaseAddress':releaseAddress,
-                'messageSignature': signature
+                'messageSignature': signature,
                 }
         inspect(data)
 
@@ -489,24 +500,34 @@ def test_offer_private(peach: PeachWrapper):
 
 
 def main():
+
     #type_tester()
     #exit(0)
 
-    #a_t = "LBuBP+R0kSV4BGKqZIewGwq9Jz6hPU3X0aT9P1+JRJY="
     peach: PeachWrapper = PeachWrapper(private_key_hex=pkey)
     res = peach.set_access_token(unique_id=unique_id, register=False)
-    print(json.dumps(res, indent=4))
+    print(peach.system_status())
+    print(peach.info())
+    #print(json.dumps(res, indent=4))
     #print(peach.access_token)
     #print(peach.private_key_hex, peach.user_id, peach.access_token, peach.expiry)
     #inspect(peach, methods=True, private=True)
-    print(json.dumps(peach.get_self_user(), indent=4))
     #inspect(peach.info())
     #print(json.dumps(peach.get_self_user(), indent=4))
     #peach.post_buy_offer((1,2))
+
+    # res = peach.update_self_user({
+        # "pgpPublicKey": pgp_public_key_str,
+        # "message": "Verifying my PGP key for Peach Bitcoin"
+        # }, pgp_private_key=pgp_private_key_str, pgp_passphrase=pgp_passphrase_str)
+    # print(res)
+
+    #print(json.dumps(peach.get_self_user(), indent=4))
     pmntd = [PeachPaymentData("paypal", phone="+111111111")]
     mop = PeachMeansOfPayment({ "EUR": ["paypal"]})
 
-    #print(peach.post_buy_offer(addressPrivateKey=pkeywall, releaseAddress=pubkeywall, paymentData=pmntd, meansOfPayment=mop, ammount_range=(20000,40000), maxPremium=-2))
+    print(peach.post_buy_offer(addressPrivateKey=pkeywall, releaseAddress=pubkeywall, paymentData=pmntd, meansOfPayment=mop, ammount_range=(20000,40000), maxPremium=-2))
+    #print(peach.get_own_offers())
     '''
     (self,addressPrivateKey: str, releaseAddress: str, 
      paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, 

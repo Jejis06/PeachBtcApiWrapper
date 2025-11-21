@@ -5,6 +5,11 @@
 priv.py
 changetohex.py
 
+pgp_generate.py
+private_key.asc
+public_key.asc
+passphrase.txt
+
 
 # IntelliJ project files
 .idea
