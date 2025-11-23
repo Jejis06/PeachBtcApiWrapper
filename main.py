@@ -133,8 +133,6 @@ class PeachWrapper:
             raise PeachBTCError("No private key provided")
 
         private_key = self.private_key_hex if (private_key_hex_arg == "") else private_key_hex_arg
-        print(private_key)
-
 
         try:
             private_key_bytes: bytes = bytes.fromhex(private_key)
@@ -391,7 +389,7 @@ class PeachWrapper:
         resp = self.__send_request('GET', 'offers/summary', requires_auth=True)
         return resp
 
-    def post_buy_offer(self,addressPrivateKey: str, releaseAddress: str, paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, ammount_range: tuple[int, int], maxPremium: int|None = None):
+    def post_buy_offer(self, addressPrivateKey: str, releaseAddress: str, paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, ammount_range: tuple[int, int], maxPremium: int|None = None):
         message: str = f"I confirm that only I, peach{self.user_id}, control the address {releaseAddress}"
         signature = self.__sign_message(message_to_sign=message, private_key_hex_arg=addressPrivateKey) [ 0 ]
         payments: dict[str, dict[str, list[str]]]= {}
@@ -399,8 +397,8 @@ class PeachWrapper:
         ammount_range:list[int] = [ammount_range[0], ammount_range[1]]
 
         for it in paymentData:
-            pm, sha = it.create_hash()
-            payments[pm] = sha
+            paymentMethod, hashed_values = it.create_hash()
+            payments[paymentMethod] = hashed_values 
 
         data = {
                 'type' : 'bid',
@@ -409,105 +407,37 @@ class PeachWrapper:
                 'paymentData': payments,
                 'releaseAddress':releaseAddress,
                 'messageSignature': signature,
+                'maxPremium' : maxPremium 
                 }
-        inspect(data)
 
-        if maxPremium is not None:
-            data['maxPremium'] = maxPremium
-
-        return self.__send_request('POST', 'offer', data= data, requires_auth=True)
-
-
-
-
-
-
-
-
-# TESTS
-def test_system(peach: PeachWrapper):
-    print("INFO ---- ")
-    print(peach.info())
-
-    print("PAYMENT METHODS ---- ")
-    print(peach.payment_methods())
-
-    print("SYSTEM STATUS ---- ")
-    print(peach.system_status())
-    pass
-
-def test_market(peach: PeachWrapper):
-    print("MARKET PRICES ---- ")
-    print(peach.market_prices())
-
-    print("MARKET PRICE BTCEUR ---- ")
-    print(peach.market_price("BTCEUR"))
+        return self.__send_request('POST', 'offer', data=data, requires_auth=True)
     
-    print("ATH PRICES---- ")
-    print(peach.ath_prices())
-    pass
+    def post_buy_offer(self, ammount: int, returnAddress: str, paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, premium: int|None = None):
+        payments: dict[str, dict[str, list[str]]]= {}
 
-def test_user(peach: PeachWrapper):
-    user = ("03870fb8d201672926c247e9f98ba43620db1695ed57e9c098f9988a58485a2565") # public key
-    print("GET USER ---- ")
-    print(peach.get_user(user))
+        for it in paymentData:
+            paymentMethod, hashed_values = it.create_hash()
+            payments[paymentMethod] = hashed_values 
 
-    print("GET USER RATING---- ")
-    print(peach.get_user_rating(user))
-
-    print("CHECK REFERAL CODE---- ")
-    print(peach.check_referal_code("SATOSHI"))
-    pass
-
-def test_offer(peach: PeachWrapper):
-    print("GET OFFER DETAILS---- ")
-    print(peach.get_offer_details("114"))
-    print("SEARCH OFFERS---- ")
-    print(peach.search_offers({
-      #"type": "", bid or ask
-      #"amount": [30000, 2000000],
-      #"meansOfPayment": { "EUR": ["sepa"] },
-      #"maxPremium": 10,
-      #"minReputation": 0.5
-    }, {
-        "sortBy":"lowestPremium"
-
-    }))
-
-    pass
-
-def test_offer_private(peach: PeachWrapper):
-
-    offers = (peach.search_offers({
-      #"type": "", bid or ask
-      #"amount": [30000, 2000000],
-      #"meansOfPayment": { "EUR": ["sepa"] },
-      #"maxPremium": 10,
-      #"minReputation": 0.5
-    }, {
-        "sortBy":"lowestPremium"
-
-    }))
-
-    offer: dict[str, str] = offers['offers'][0]
-    id = offer['id']
-
-    offer = peach.get_offer_details(id)
-    print(json.dumps(offer, indent=4))
-
+        data = {
+                'type': 'ask',
+                'amount': ammount,
+                'premium': premium,
+                'meansOfPayment': meansOfPayment.get(),
+                'paymentData': payments,
+                'returnAddress': returnAddress
+                }
+        res = self.__send_request('POST', 'offer', data=data, requires_auth=True)
+        return res
 
 
 
 
 def main():
-
-    #type_tester()
-    #exit(0)
-
     peach: PeachWrapper = PeachWrapper(private_key_hex=pkey)
     res = peach.set_access_token(unique_id=unique_id, register=False)
     print(peach.system_status())
-    print(peach.info())
+    #print(peach.info())
     #print(json.dumps(res, indent=4))
     #print(peach.access_token)
     #print(peach.private_key_hex, peach.user_id, peach.access_token, peach.expiry)
@@ -516,6 +446,7 @@ def main():
     #print(json.dumps(peach.get_self_user(), indent=4))
     #peach.post_buy_offer((1,2))
 
+    # TEST OF UPDATING THE PGP PUBLIC KEY
     # res = peach.update_self_user({
         # "pgpPublicKey": pgp_public_key_str,
         # "message": "Verifying my PGP key for Peach Bitcoin"
@@ -523,17 +454,13 @@ def main():
     # print(res)
 
     #print(json.dumps(peach.get_self_user(), indent=4))
-    pmntd = [PeachPaymentData("paypal", phone="+111111111")]
-    mop = PeachMeansOfPayment({ "EUR": ["paypal"]})
 
-    print(peach.post_buy_offer(addressPrivateKey=pkeywall, releaseAddress=pubkeywall, paymentData=pmntd, meansOfPayment=mop, ammount_range=(20000,40000), maxPremium=-2))
+    # TEST OF SENDING A BUY OFFER
+    #pmntd = [PeachPaymentData("paypal", phone="+111111111")]
+    #mop = PeachMeansOfPayment({ "EUR": ["paypal"]})
+    #print(peach.post_buy_offer(addressPrivateKey=pkeywall, releaseAddress=pubkeywall, paymentData=pmntd, meansOfPayment=mop, ammount_range=(20000,40000), maxPremium=0))
+
     #print(peach.get_own_offers())
-    '''
-    (self,addressPrivateKey: str, releaseAddress: str, 
-     paymentData: list[PeachPaymentData], meansOfPayment: PeachMeansOfPayment, 
-     ammount_range: tuple[int, int], maxPremium: str|None = None):
-        '''
-
     # print(peach.get_fee_estimates())
     #print(peach.get_self_payment_method_info())
     # print(peach.get_self_trading_limits())
