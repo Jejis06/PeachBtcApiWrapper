@@ -12,7 +12,6 @@ A comprehensive Python wrapper for the [Peach Bitcoin](https://peachbitcoin.com/
 - **Complete API Coverage**: All public and private endpoints implemented
 - **Type Hints**: Full Python type annotations for IDE support
 - **Auto Token Refresh**: Automatic handling of expired access tokens
-- **Privacy-First**: Payment data is automatically hashed before sending
 - **Comprehensive Tests**: 139 tests (unit + integration)
 
 ## Installation
@@ -209,7 +208,7 @@ unique_id = "your_unique_id"
 pkeywall = "wallet_private_key_hex"
 pubkeywall = "bc1q..."  # Your Bitcoin address
 
-# PGP keys (optional, for encrypted communication)
+# PGP keys 
 with open("public_key.asc", "r") as f:
     pgp_public_key_str = f.read()
 with open("private_key.asc", "r") as f:
@@ -223,13 +222,13 @@ with open("passphrase.txt", "r") as f:
 ## Project Structure
 
 ```
-Wrapper_c/
+PeachBtcApiWrapper/
 ├── main.py                 # Main wrapper implementation
 ├── conftest.py             # Pytest configuration
 ├── test_peach_wrapper.py   # Unit tests (89 tests)
 ├── test_integration.py     # Integration tests (50 tests)
 ├── requirements.txt        # Python dependencies
-├── priv.py                 # Your credentials (gitignored)
+├── priv.py                 # Created by you for testing 
 └── README.md               # This file
 ```
 
