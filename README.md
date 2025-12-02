@@ -7,6 +7,19 @@ A comprehensive Python wrapper for the [Peach Bitcoin](https://peachbitcoin.com/
 > **Based on the official Peach Bitcoin API Documentation**  
 > https://docs.peachbitcoin.com/
 
+## What is Peach Bitcoin?
+
+[Peach Bitcoin](https://peachbitcoin.com/) is a peer-to-peer Bitcoin trading platform that allows users to buy and sell Bitcoin directly with each other without KYC requirements. The platform is available as a mobile app for both iOS and Android, providing a simple and private way to stack sats. Check out their [official GitHub](https://github.com/peach2peach) for more of their open source work.
+
+I'm not affiliated with Peach Bitcoin - it's just an amazing platform that I use and love. This wrapper is my attempt to provide a Python interface to their public API.
+
+Key features of the platform:
+- **No KYC** - Trade Bitcoin without identity verification
+- **P2P Trading** - Connect directly with buyers and sellers
+- **Escrow Protection** - Secure trades with built-in escrow
+- **Multiple Payment Methods** - SEPA, PayPal, Revolut, and many more
+- **Privacy Focused** - Your data stays yours
+
 ## Features
 
 - **Complete API Coverage**: All public and private endpoints implemented
