@@ -162,9 +162,9 @@ All endpoints from [docs.peachbitcoin.com](https://docs.peachbitcoin.com/) are i
 | Docs Section | Endpoint | Method |
 |--------------|----------|--------|
 | Match (Private) | `GET /v1/offer/:offerId/matches` | `get_matches(offer_id)` |
-| Match (Private) | `POST /v1/offer/:offerId/match` | `match_sell_offer(...)` |
-| Match (Private) | `POST /v1/offer/:offerId/match/undo` | `unmatch_sell_offer(offer_id, match_id)` |
-| Match (Private) | `POST /v1/offer/:offerId/doublematch` | `doublematch_buy_offer(...)` |
+| Match (Private) | `POST /v1/offer/match` | `match_sell_offer(...)` |
+| Match (Private) | `DELETE /v1/offer/match` | `unmatch_sell_offer(match_offer_id)` |
+| Match (Private) | `POST /v1/offer/match` | `doublematch_buy_offer(...)` |
 
 ### Private Contract Endpoints (16)
 
@@ -173,19 +173,19 @@ All endpoints from [docs.peachbitcoin.com](https://docs.peachbitcoin.com/) are i
 | Contract (Private) | `GET /v1/contract/:contractId` | `get_contract_details(contract_id)` |
 | Contract (Private) | `GET /v1/contracts/summary` | `get_contract_summaries()` |
 | Contract (Private) | `GET /v1/contracts` | `get_contracts()` |
-| Contract (Private) | `POST /v1/contract/:id/payment/confirm` | `confirm_payment_made(contract_id)` |
-| Contract (Private) | `POST /v1/contract/:id/payment/received` | `confirm_payment_received(contract_id, tx)` |
-| Contract (Private) | `POST /v1/contract/:id/rating` | `rate_counterparty(contract_id, rating, sig)` |
+| Contract (Private) | `POST /v1/contract/:id/payment/confirm` (buyer) | `confirm_payment_made(contract_id)` |
+| Contract (Private) | `POST /v1/contract/:id/payment/confirm` (seller) | `confirm_payment_received(contract_id, release_transaction)` |
+| Contract (Private) | `POST /v1/contract/:id/rating` | `rate_counterparty(contract_id, rating, signature)` |
 | Contract (Private) | `POST /v1/contract/:id/cancel` | `cancel_contract(contract_id, reason)` |
 | Contract (Private) | `POST /v1/contract/:id/cancel/confirm` | `confirm_cancelation_request(contract_id)` |
 | Contract (Private) | `POST /v1/contract/:id/cancel/reject` | `reject_cancelation_request(contract_id)` |
-| Contract (Private) | `POST /v1/contract/:id/extend` | `extend_payment_time(contract_id)` |
+| Contract (Private) | `POST /v1/contract/:id/cancel/extendTime` | `extend_payment_time(contract_id)` |
 | Contract (Private) | `GET /v1/contract/:id/chat` | `get_chat_log(contract_id, page)` |
-| Contract (Private) | `POST /v1/contract/:id/chat` | `post_chat_message(contract_id, msg, sig)` |
-| Contract (Private) | `POST /v1/contract/:id/chat/:msgId/read` | `set_chat_message_read(contract_id, msg_id)` |
-| Contract (Private) | `POST /v1/contract/:id/dispute` | `raise_dispute(contract_id, reason, email)` |
-| Contract (Private) | `POST /v1/contract/:id/dispute/acknowledge` | `acknowledge_dispute(contract_id)` |
-| Contract (Private) | `POST /v1/contract/:id/dispute/outcome/acknowledge` | `acknowledge_dispute_outcome(contract_id)` |
+| Contract (Private) | `POST /v1/contract/:id/chat` | `post_chat_message(contract_id, message, signature)` |
+| Contract (Private) | `POST /v1/contract/:id/chat/received` | `set_chat_message_read(contract_id, start, end)` |
+| Contract (Private) | `POST /v1/contract/:id/dispute` | `raise_dispute(contract_id, reason, symmetricKeyEncrypted, email)` |
+| Contract (Private) | `POST /v1/contract/:id/dispute/acknowledge` | `acknowledge_dispute(contract_id, email)` |
+| Contract (Private) | `POST /v1/contract/:id/dispute/acknowledgeOutcome` | `acknowledge_dispute_outcome(contract_id)` |
 
 **Total: 63 endpoints implemented**
 
