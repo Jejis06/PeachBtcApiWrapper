@@ -605,61 +605,30 @@ class PeachWrapper:
         """
         return self.__send_request('POST', f'offer/{offer_id}/escrow/confirm', requires_auth=True)
 
-    def update_buy_offer(self, offer_id: str, amount_range: tuple[int, int] | None = None, 
-                         means_of_payment: PeachMeansOfPayment | None = None,
-                         payment_data: list[PeachPaymentData] | None = None,
-                         max_premium: int | None = None):
+    def update_buy_offer(self, max_premium: int | None = None):
         """Update an existing buy offer.
         
         Args:
-            offer_id: The ID of the buy offer to update
-            amount_range: New amount range (min, max) in satoshis
-            means_of_payment: New payment methods
-            payment_data: New payment data
             max_premium: New maximum premium percentage
         """
         data: dict = {}
         
-        if amount_range is not None:
-            data['amount'] = [amount_range[0], amount_range[1]]
-        if means_of_payment is not None:
-            data['meansOfPayment'] = means_of_payment.get()
-        if payment_data is not None:
-            payments: dict[str, dict[str, list[str]]] = {}
-            for it in payment_data:
-                paymentMethod, hashed_values = it.create_hash()
-                payments[paymentMethod] = hashed_values
-            data['paymentData'] = payments
         if max_premium is not None:
             data['maxPremium'] = max_premium
             
         return self.__send_request('PATCH', f'offer/{offer_id}', data=data, requires_auth=True)
 
-    def update_sell_offer(self, offer_id: str, amount: int | None = None,
-                          means_of_payment: PeachMeansOfPayment | None = None,
-                          payment_data: list[PeachPaymentData] | None = None,
-                          premium: int | None = None):
+    def update_sell_offer(self, premium: int | None = None):
         """Update an existing sell offer.
         
         Args:
-            offer_id: The ID of the sell offer to update
-            amount: New amount in satoshis
-            means_of_payment: New payment methods
-            payment_data: New payment data
             premium: New premium percentage
         """
+
+        # Todo: add refundTx but first understand what is it
+
         data: dict = {}
         
-        if amount is not None:
-            data['amount'] = amount
-        if means_of_payment is not None:
-            data['meansOfPayment'] = means_of_payment.get()
-        if payment_data is not None:
-            payments: dict[str, dict[str, list[str]]] = {}
-            for it in payment_data:
-                paymentMethod, hashed_values = it.create_hash()
-                payments[paymentMethod] = hashed_values
-            data['paymentData'] = payments
         if premium is not None:
             data['premium'] = premium
             
@@ -709,71 +678,63 @@ class PeachWrapper:
         """
         return self.__send_request('GET', f'offer/{offer_id}/matches', requires_auth=True)
 
-    def match_sell_offer(self, offer_id: str, match_offer_id: str, 
-                         price: float, currency: str, payment_method: str,
+    def match_sell_offer(self, match_offer_id: str, 
+                         currency: str, payment_method: str,
                          symmetric_key_encrypted: str, symmetric_key_signature: str,
-                         payment_data_encrypted: str, payment_data_signature: str):
-        """Match a sell offer with a buy offer.
+                         premium: int | None = None):
+        """Match a sell offer.
         
         Args:
-            offer_id: The ID of your sell offer
             match_offer_id: The ID of the buy offer to match with
-            price: Agreed price
             currency: Currency code (e.g., 'EUR')
-            payment_method: Payment method ID
-            symmetric_key_encrypted: Encrypted symmetric key for the buyer
-            symmetric_key_signature: Signature of the symmetric key
-            payment_data_encrypted: Encrypted payment data
-            payment_data_signature: Signature of the payment data
+            payment_method: Payment method shortname (e.g, 'paypal')
+            symmetric_key_encrypted: PGP Encrypted symmetric key for the buyer
+            symmetric_key_signature: PGP Signature of the symmetric key
         """
+
+        # TODO : make the api handle encryption by itself
         data = {
             'matchingOfferId': match_offer_id,
-            'price': price,
             'currency': currency,
             'paymentMethod': payment_method,
+            'premium': premium,
+
             'symmetricKeyEncrypted': symmetric_key_encrypted,
             'symmetricKeySignature': symmetric_key_signature,
-            'paymentDataEncrypted': payment_data_encrypted,
-            'paymentDataSignature': payment_data_signature
         }
-        return self.__send_request('POST', f'offer/{offer_id}/match', data=data, requires_auth=True)
+        return self.__send_request('POST', f'offer/match', data=data, requires_auth=True)
 
-    def unmatch_sell_offer(self, offer_id: str, match_offer_id: str):
+    def unmatch_sell_offer(self, match_offer_id: str):
         """Unmatch a previously matched sell offer.
         
         Args:
-            offer_id: The ID of your sell offer
             match_offer_id: The ID of the matched buy offer to unmatch
         """
         data = {'matchingOfferId': match_offer_id}
-        return self.__send_request('POST', f'offer/{offer_id}/match/undo', data=data, requires_auth=True)
+        return self.__send_request('DELETE', f'offer/match', data=data, requires_auth=True)
 
-    def doublematch_buy_offer(self, offer_id: str, match_offer_id: str,
+    def doublematch_buy_offer(self, match_offer_id: str,
                               currency: str, payment_method: str,
-                              symmetric_key_encrypted: str, symmetric_key_signature: str,
                               payment_data_encrypted: str, payment_data_signature: str):
         """Double match a buy offer (confirm match from buyer side).
         
         Args:
-            offer_id: The ID of your buy offer
             match_offer_id: The ID of the sell offer that matched you
             currency: Currency code (e.g., 'EUR')
-            payment_method: Payment method ID
-            symmetric_key_encrypted: Encrypted symmetric key for the seller
-            symmetric_key_signature: Signature of the symmetric key
-            payment_data_encrypted: Encrypted payment data
-            payment_data_signature: Signature of the payment data
+            payment_method: Payment method shortname (e.g, 'paypal')
+            payment_data_encrypted: PGP Encrypted json stringified payment data
+            payment_data_signature: PGP Signature of json stringified payment data
         """
+
+        # TODO : Handle payment data encryption and signing
         data = {
             'matchingOfferId': match_offer_id,
             'currency': currency,
             'paymentMethod': payment_method,
-            'symmetricKeyEncrypted': symmetric_key_encrypted,
-            'symmetricKeySignature': symmetric_key_signature,
             'paymentDataEncrypted': payment_data_encrypted,
             'paymentDataSignature': payment_data_signature
         }
-        return self.__send_request('POST', f'offer/{offer_id}/doublematch', data=data, requires_auth=True)
+        return self.__send_request('POST', f'offer/match', data=data, requires_auth=True)
 
     # Private contract endpoints
     
@@ -818,6 +779,9 @@ class PeachWrapper:
             release_transaction: The fully signed release transaction hex (optional,
                                  required to release Bitcoin from escrow)
         """
+
+        # TODO: handle signing the PSBT
+        
         data = {}
         if release_transaction is not None:
             data['releaseTransaction'] = release_transaction
@@ -871,7 +835,7 @@ class PeachWrapper:
         Args:
             contract_id: The ID of the contract
         """
-        return self.__send_request('POST', f'contract/{contract_id}/extend', requires_auth=True)
+        return self.__send_request('POST', f'contract/{contract_id}/cancel/extendTime', requires_auth=True)
 
     # Contract chat endpoints
     
@@ -893,43 +857,58 @@ class PeachWrapper:
             message: The encrypted message content
             signature: Signature of the message
         """
+        # TODO : handle message signing
         data = {
             'message': message,
             'signature': signature
         }
         return self.__send_request('POST', f'contract/{contract_id}/chat', data=data, requires_auth=True)
 
-    def set_chat_message_read(self, contract_id: str, message_id: str):
+    def set_chat_message_read(self, contract_id: str, start: int, end: int):
         """Mark a chat message as read.
         
         Args:
             contract_id: The ID of the contract
-            message_id: The ID of the message to mark as read
+            start: The starting index of read messages
+            end: The last index of read messages
         """
-        return self.__send_request('POST', f'contract/{contract_id}/chat/{message_id}/read', requires_auth=True)
+        data = {
+                "start": start,
+                "end": end
+        }
+        return self.__send_request('POST', f'contract/{contract_id}/chat/received',data=data, requires_auth=True)
 
     # Contract dispute endpoints
     
-    def raise_dispute(self, contract_id: str, reason: str, email: str | None = None):
+    def raise_dispute(self, contract_id: str, reason: str, symmetricKeyEncrypted: str, email: str | None = None):
         """Raise a dispute for a contract.
         
         Args:
             contract_id: The ID of the contract
-            reason: The reason for the dispute
-            email: Optional email for dispute communication
+            reason: The reason for the dispute: noPayment.seller,noPayment.buyer, unresponsive.seller, unresponsive.buyer, abusive,other
+            email: The email to get in touch with, required when reason is noPayment.seller or noPayment.buyer
+            symmetricKeyEncrypted: The symmetric key used to share secrets with counter party. Encrypt this key with the public PGP key.
         """
-        data = {'reason': reason}
+        data = {
+                'reason': reason,
+                'symmetricKeyEncrypted': symmetricKeyEncrypted,
+        }
+        # TODO: handle symmetric keys and encryption
         if email is not None:
             data['email'] = email
         return self.__send_request('POST', f'contract/{contract_id}/dispute', data=data, requires_auth=True)
 
-    def acknowledge_dispute(self, contract_id: str):
+    def acknowledge_dispute(self, contract_id: str, email: str | None = None):
         """Acknowledge that a dispute has been raised against you.
         
         Args:
             contract_id: The ID of the contract
+            email: The email to get in touch with, required when reason is noPayment.seller or noPayment.buyer 
         """
-        return self.__send_request('POST', f'contract/{contract_id}/dispute/acknowledge', requires_auth=True)
+        data = {}
+        if email is not None:
+            data['email'] = email
+        return self.__send_request('POST', f'contract/{contract_id}/dispute/acknowledge', data=data, requires_auth=True)
 
     def acknowledge_dispute_outcome(self, contract_id: str):
         """Acknowledge the outcome of a dispute resolution.
@@ -937,8 +916,7 @@ class PeachWrapper:
         Args:
             contract_id: The ID of the contract
         """
-        return self.__send_request('POST', f'contract/{contract_id}/dispute/outcome/acknowledge', requires_auth=True)
-
+        return self.__send_request('POST', f'contract/{contract_id}/dispute/acknowledgeOutcome', requires_auth=True)
 
 
 
