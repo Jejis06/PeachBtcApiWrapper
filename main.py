@@ -828,7 +828,7 @@ class PeachWrapper:
         
         Args:
             contract_id: The ID of the contract
-            rating: Rating value (1-5 or as defined by API)
+            rating: Rating value (1 or -1 as defined by API)
             signature: Signature proving the rating
         """
         data = {

@@ -25,7 +25,6 @@ Key features of the platform:
 - **Complete API Coverage**: All public and private endpoints implemented
 - **Type Hints**: Full Python type annotations for IDE support
 - **Auto Token Refresh**: Automatic handling of expired access tokens
-- **Comprehensive Tests**: 139 tests (unit + integration)
 
 ## Installation
 
