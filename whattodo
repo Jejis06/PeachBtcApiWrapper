@@ -1,0 +1,16 @@
+#!/bin/sh
+files=($(find * -type f -maxdepth 1))
+self=$0
+
+for f in ${files[@]}
+do
+	len=$(cat $f | grep TODO | wc -l )
+	contents=$(cat -n $f | grep TODO)
+	if (($len != 0 )) && [[ "$self" != "./$f" ]] ; then
+		echo "$f ---------- "
+		echo "$contents"
+	fi
+
+done
+
+

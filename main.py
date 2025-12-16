@@ -182,6 +182,8 @@ class PeachWrapper:
         self.expiry: int = -1
         self.user_id: str = "" 
 
+        # PGP/ keys
+
         self.session: rq.Session = rq.Session()
         self.session.headers.update({
             'Content-Type': 'application/json',
@@ -880,7 +882,8 @@ class PeachWrapper:
 
     # Contract dispute endpoints
     
-    def raise_dispute(self, contract_id: str, reason: str, symmetricKeyEncrypted: str, email: str | None = None):
+    def raise_dispute(self, contract_id: str, reason: str, symmetricKeyEncrypted: str,
+                      email: str | None = None):
         """Raise a dispute for a contract.
         
         Args:
