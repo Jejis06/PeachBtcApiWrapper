@@ -189,58 +189,12 @@ All endpoints from [docs.peachbitcoin.com](https://docs.peachbitcoin.com/) are i
 
 **Total: 63 endpoints implemented**
 
-## Testing
-
-```bash
-# Run unit tests (fast, no network required)
-pytest test_peach_wrapper.py -v
-
-# Run integration tests (requires priv.py with credentials)
-pytest test_integration.py -v -s -m "not slow"
-
-# Run all tests with coverage
-pytest test_peach_wrapper.py test_integration.py -v --cov=main --cov-report=term-missing
-
-# Include slow tests that create real offers (use with caution!)
-pytest test_integration.py -v -s -m "slow"
-```
-
-## Testing Credentials Setup
-
-To run integration tests with the real API, create a `priv.py` file (not tracked by git):
-
-```python
-# Your Peach account private key (64 hex characters)
-pkey = "your_private_key_hex"
-
-# Unique device identifier
-unique_id = "your_unique_id"
-
-# Wallet private key for signing release addresses
-pkeywall = "wallet_private_key_hex"
-pubkeywall = "bc1q..."  # Your Bitcoin address
-
-# PGP keys 
-with open("public_key.asc", "r") as f:
-    pgp_public_key_str = f.read()
-with open("private_key.asc", "r") as f:
-    pgp_private_key_str = f.read()
-with open("passphrase.txt", "r") as f:
-    pgp_passphrase_str = f.read().strip()
-```
-
-> **Note**: This file is only required for running integration tests. The wrapper itself only needs a private key passed directly to `PeachWrapper()`.
-
 ## Project Structure
 
 ```
 PeachBtcApiWrapper/
 ├── main.py                 # Main wrapper implementation
-├── conftest.py             # Pytest configuration
-├── test_peach_wrapper.py   # Unit tests (89 tests)
-├── test_integration.py     # Integration tests (50 tests)
 ├── requirements.txt        # Python dependencies
-├── priv.py                 # Created by you for testing 
 └── README.md               # This file
 ```
 
