@@ -1,5 +1,6 @@
 # Peach Bitcoin API Wrapper
 
+> ⚠️⚠️⚠️⚠️⚠️ **Note** - this api wrapper is outdated as the new version of the api came out ⚠️⚠️⚠️⚠️⚠️ .
 > ⚠️ **Note** - This is my personal project worked on in my free time. There may be bugs.
 
 A comprehensive Python wrapper for the [Peach Bitcoin](https://peachbitcoin.com/) P2P trading API.
